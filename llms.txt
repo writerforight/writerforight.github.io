@@ -1,0 +1,15 @@
+# Eren Can Almaz
+
+> Eren Can Almaz is an Electrical Engineering (Elektrotechnik) student at RWTH Aachen University. He builds Python and JavaScript tools around audio, speech recognition and machine learning. GitHub: https://github.com/writerforight
+
+## Projects
+
+- [Neural Space Deformation](https://writerforight.github.io/mlp-space-deformation/): interactive, browser-only visualization of how a small neural network (MLP) deforms space layer by layer and how backpropagation reshapes it. The MLP, backpropagation, SGD, Adam, Jacobians, PCA, the neural tangent kernel and continual-learning methods (replay buffer, orthogonal gradient descent, EWC) are written from first principles in plain JavaScript. Source: https://github.com/writerforight/mlp-space-deformation
+- [Ders Transkript](https://github.com/writerforight/ders-transkript): offline lecture transcription desktop app for Windows, macOS and Linux (faster-whisper, PyQt6); turns lecture recordings and live microphone input into text without an internet connection.
+- [YouTube Segment Downloader](https://github.com/writerforight/youtube-segment-downloader): PySide6 desktop app to download a full YouTube video or only a selected time range.
+- [Char-Based-RNN](https://github.com/writerforight/Char-Based-RNN): character-level recurrent neural network that learns online, one step at a time, in pure NumPy with a Tkinter interface.
+
+## Links
+
+- [Personal page](https://writerforight.github.io/)
+- [GitHub profile](https://github.com/writerforight)

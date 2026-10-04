@@ -4,17 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Eren Can Almaz</title>
-<meta name="description" content="Eren Can Almaz — Electrical Engineering (Elektrotechnik) student at RWTH Aachen University. Python desktop apps for audio, speech and machine learning.">
+<meta name="description" content="Eren Can Almaz — Electrical Engineering (Elektrotechnik) student at RWTH Aachen University. Python and JavaScript tools for audio, speech recognition and machine learning.">
 <link rel="canonical" href="https://writerforight.github.io/">
+<link rel="alternate" type="text/markdown" href="https://writerforight.github.io/llms.txt" title="LLM-friendly summary">
 <meta property="og:title" content="Eren Can Almaz">
 <meta property="og:description" content="Electrical Engineering student at RWTH Aachen University.">
 <meta property="og:url" content="https://writerforight.github.io/">
 <meta property="og:type" content="profile">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Person", "name": "Eren Can Almaz",
- "url": "https://writerforight.github.io/",
- "affiliation": {"@type": "CollegeOrUniversity", "name": "RWTH Aachen University"},
- "sameAs": ["https://github.com/writerforight"]}
+{"@context": "https://schema.org", "@graph": [
+ {"@type": "Person", "@id": "https://writerforight.github.io/#person", "name": "Eren Can Almaz",
+  "url": "https://writerforight.github.io/",
+  "description": "Electrical Engineering (Elektrotechnik) student at RWTH Aachen University who builds Python and JavaScript tools around audio, speech recognition and machine learning.",
+  "affiliation": {"@type": "CollegeOrUniversity", "name": "RWTH Aachen University", "url": "https://www.rwth-aachen.de/"},
+  "knowsAbout": ["Electrical engineering", "Neural networks", "Machine learning", "Speech recognition", "Python", "JavaScript"],
+  "sameAs": ["https://github.com/writerforight"]},
+ {"@type": "SoftwareApplication", "name": "Neural Space Deformation", "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web browser", "url": "https://writerforight.github.io/mlp-space-deformation/",
+  "codeRepository": "https://github.com/writerforight/mlp-space-deformation", "license": "https://opensource.org/licenses/MIT",
+  "description": "Interactive visualization of how a small MLP deforms space layer by layer and how backpropagation reshapes it; MLP, backprop, SGD/Adam, Jacobians, NTK and continual-learning methods written from first principles in JavaScript.",
+  "author": {"@id": "https://writerforight.github.io/#person"}},
+ {"@type": "SoftwareApplication", "name": "Ders Transkript", "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Windows, macOS, Linux", "url": "https://github.com/writerforight/ders-transkript",
+  "description": "Offline lecture transcription desktop app (Whisper, PyQt6) that turns recordings into text without an internet connection.",
+  "author": {"@id": "https://writerforight.github.io/#person"}},
+ {"@type": "SoftwareSourceCode", "name": "YouTube Segment Downloader", "codeRepository": "https://github.com/writerforight/youtube-segment-downloader",
+  "programmingLanguage": "Python", "description": "PySide6 desktop app to download a full YouTube video or only a selected time range.",
+  "author": {"@id": "https://writerforight.github.io/#person"}},
+ {"@type": "SoftwareSourceCode", "name": "Char-Based-RNN", "codeRepository": "https://github.com/writerforight/Char-Based-RNN",
+  "programmingLanguage": "Python", "description": "Character-level RNN that learns online, step by step, in pure NumPy with a Tkinter interface.",
+  "author": {"@id": "https://writerforight.github.io/#person"}}
+]}
 </script>
 <style>
   :root { --bg: #ffffff; --text: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --accent: #0066cc; }
@@ -44,21 +64,25 @@
 <main>
   <h1>Eren Can Almaz</h1>
   <p class="lead">Electrical Engineering (Elektrotechnik) student at RWTH Aachen University.
-    I build desktop tools in Python — mostly around audio, speech and machine learning.</p>
+    I build tools in Python and JavaScript — mostly around audio, speech and machine learning.</p>
 
   <h2>Projects</h2>
   <ul>
     <li><a class="name" href="https://github.com/writerforight/ders-transkript">Ders Transkript</a>
       <span class="desc">Offline lecture transcription app (Whisper, PyQt6) for Windows, macOS and Linux.
       <a href="https://github.com/writerforight/ders-transkript/releases/latest">Download</a></span></li>
+    <li><a class="name" href="https://writerforight.github.io/mlp-space-deformation/">Neural Space Deformation</a>
+      <span class="desc">Interactive visualization of how a small neural network (MLP) deforms space layer by layer and how
+      backpropagation reshapes it — written from first principles in plain JavaScript, no ML libraries.
+      <a href="https://github.com/writerforight/mlp-space-deformation">Source</a></span></li>
     <li><a class="name" href="https://github.com/writerforight/youtube-segment-downloader">YouTube Segment Downloader</a>
       <span class="desc">PySide6 desktop app to download a full YouTube video or only a selected time range.</span></li>
     <li><a class="name" href="https://github.com/writerforight/Char-Based-RNN">Char-Based-RNN</a>
       <span class="desc">Character-level RNN that learns online, step by step — pure NumPy with a Tkinter interface.</span></li>
   </ul>
 
-  <p lang="tr">RWTH Aachen Üniversitesi'nde Elektrik Mühendisliği (Elektrotechnik) öğrencisiyim. Python ile
-    masaüstü uygulamalar geliştiriyorum; çoğunlukla ses, konuşma tanıma ve makine öğrenmesi üzerine.</p>
+  <p lang="tr">RWTH Aachen Üniversitesi'nde Elektrik Mühendisliği (Elektrotechnik) öğrencisiyim. Python ve JavaScript ile
+    uygulamalar geliştiriyorum; çoğunlukla ses, konuşma tanıma ve makine öğrenmesi üzerine.</p>
 
   <footer><a href="https://github.com/writerforight">GitHub</a></footer>
 </main>
