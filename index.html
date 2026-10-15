@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Eren Can Almaz</title>
 <meta name="description" content="Eren Can Almaz — Electrical Engineering (Elektrotechnik) student at RWTH Aachen University who builds interactive tools that make engineering visible — neural networks, flight control and signals.">
+<meta name="theme-color" content="#0a0e17">
 <link rel="canonical" href="https://writerforight.github.io/">
 <link rel="alternate" type="text/markdown" href="https://writerforight.github.io/llms.txt" title="LLM-friendly summary">
 <meta property="og:title" content="Eren Can Almaz">
 <meta property="og:description" content="Electrical Engineering student at RWTH Aachen University. Interactive tools that make engineering visible.">
 <meta property="og:url" content="https://writerforight.github.io/">
 <meta property="og:type" content="profile">
+<meta property="og:image" content="https://writerforight.github.io/assets/space-bending.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@graph": [
  {"@type": "Person", "@id": "https://writerforight.github.io/#person", "name": "Eren Can Almaz",
@@ -42,63 +47,329 @@
 ]}
 </script>
 <style>
-  :root { --bg: #ffffff; --text: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --accent: #0066cc; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #1c1c1e; --text: #f5f5f7; --muted: #a1a1a6; --line: #38383a; --accent: #4da3ff; }
+  :root {
+    --bg: #0a0e17; --bg2: #0f1522; --card: #121a29; --line: #1f2a3d; --line2: #2b3a54;
+    --text: #eef2f8; --muted: #8d9ab0; --accent: #7cb7ff; --accent-soft: rgba(124, 183, 255, 0.12);
+    --r: 16px;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body { margin: 0; background: var(--bg); color: var(--text);
-         font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-  main { max-width: 680px; margin: 0 auto; padding: 72px 20px 56px; }
-  h1 { font-size: 40px; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 12px; }
-  .lead { font-size: 19px; color: var(--muted); margin: 0 0 40px; }
-  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
-       margin: 40px 0 8px; font-weight: 600; }
-  ul { list-style: none; padding: 0; margin: 0; }
-  li { padding: 16px 0; border-bottom: 1px solid var(--line); }
-  li:last-child { border-bottom: none; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .name { font-weight: 600; }
-  .desc { display: block; color: var(--muted); font-size: 15px; }
-  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
-  .hire { margin-top: 32px; }
-  [lang="tr"] { margin-top: 40px; color: var(--muted); font-size: 15px; }
+         font: 16px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* top bar */
+  .bar { position: fixed; inset: 0 0 auto; z-index: 10; transition: background 0.25s, border-color 0.25s;
+         border-bottom: 1px solid transparent; }
+  .bar.solid { background: rgba(10, 14, 23, 0.82); backdrop-filter: blur(10px); border-color: var(--line); }
+  .bar .wrap { display: flex; align-items: center; height: 64px; gap: 16px; }
+  .brand { font-weight: 600; letter-spacing: -0.01em; }
+  .brand span { color: var(--muted); font-weight: 500; }
+  .bar .sp { flex: 1; }
+  .nav { display: flex; gap: 22px; color: var(--muted); font-size: 14.5px; }
+  .nav a:hover { color: var(--text); }
+  .lang { display: inline-flex; padding: 3px; border: 1px solid var(--line2); border-radius: 999px; background: rgba(15, 21, 34, 0.7); }
+  .lang button { background: none; border: 0; color: var(--muted); font: 600 12.5px/1 Inter, sans-serif; letter-spacing: 0.06em;
+                 padding: 7px 11px; border-radius: 999px; cursor: pointer; transition: color 0.15s, background 0.15s; }
+  .lang button:hover { color: var(--text); }
+  .lang button[aria-pressed="true"] { background: var(--accent); color: #07101f; }
+
+  /* hero */
+  .hero { position: relative; min-height: 88vh; display: flex; align-items: center; overflow: hidden; }
+  #field { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+           -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+                   mask-image: linear-gradient(to bottom, #000 55%, transparent); }
+  .hero .wrap { position: relative; padding-top: 120px; padding-bottom: 80px; width: 100%; }
+  .eyebrow { display: inline-block; color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+             text-transform: uppercase; margin-bottom: 22px; }
+  h1 { font-size: clamp(44px, 8vw, 88px); line-height: 1.02; letter-spacing: -0.035em; margin: 0 0 26px; font-weight: 700; }
+  .tagline { font-size: clamp(19px, 2.4vw, 25px); line-height: 1.45; max-width: 680px; margin: 0 0 40px; color: #c7d1e0; letter-spacing: -0.01em; }
+  .tagline b { color: var(--text); font-weight: 600; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 15px;
+         border: 1px solid var(--line2); transition: border-color 0.15s, background 0.15s, transform 0.15s; }
+  .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #07101f; }
+  .btn.primary:hover { background: #9ccaff; }
+
+  /* sections */
+  section { padding: 72px 0; }
+  .kicker { color: var(--muted); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 28px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+          overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+  .card:hover { border-color: var(--line2); transform: translateY(-2px); }
+  .card.wide { grid-column: 1 / -1; }
+  .shot { display: block; background: #060a12; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .shot img { display: block; width: 100%; height: auto; transition: transform 0.6s ease; }
+  .card:hover .shot img { transform: scale(1.02); }
+  .body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag { font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; }
+  .card h3 { margin: 4px 0 0; font-size: 22px; letter-spacing: -0.015em; }
+  .card p { margin: 0; color: var(--muted); }
+  .links { margin-top: auto; padding-top: 8px; display: flex; gap: 18px; font-size: 14.5px; font-weight: 600; }
+  .links a { color: var(--accent); }
+  .links a:hover { text-decoration: underline; }
+
+  .small { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .small a { display: block; padding: 18px 20px; border: 1px solid var(--line); border-radius: 12px; transition: border-color 0.2s; }
+  .small a:hover { border-color: var(--line2); }
+  .small b { display: block; font-weight: 600; margin-bottom: 2px; }
+  .small span { color: var(--muted); font-size: 14.5px; }
+
+  .open { display: flex; align-items: center; gap: 24px; justify-content: space-between; flex-wrap: wrap;
+          padding: 32px; border-radius: var(--r); border: 1px solid var(--line2);
+          background: radial-gradient(120% 140% at 0% 0%, rgba(124, 183, 255, 0.14), transparent 60%), var(--bg2); }
+  .open h2 { margin: 0 0 6px; font-size: 24px; letter-spacing: -0.015em; }
+  .open p { margin: 0; color: var(--muted); max-width: 560px; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; gap: 16px; justify-content: space-between; flex-wrap: wrap; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 760px) {
+    .nav { display: none; }
+    .grid, .small { grid-template-columns: 1fr; }
+    .hero { min-height: auto; }
+    .hero .wrap { padding-top: 112px; padding-bottom: 48px; }
+    section { padding: 48px 0; }
+    .open { padding: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .card, .btn, .shot img { transition: none; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1>Eren Can Almaz</h1>
-  <p class="lead">Electrical Engineering (Elektrotechnik) student at RWTH Aachen University.
-    I build interactive tools that make engineering visible — neural networks, flight control and signals.</p>
+<header class="bar" id="bar">
+  <div class="wrap">
+    <a class="brand" href="#top">Eren Can Almaz</a>
+    <span class="sp"></span>
+    <nav class="nav">
+      <a href="#projects" data-i18n="navProjects">Projects</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-lang="tr" aria-pressed="false">TR</button>
+    </div>
+  </div>
+</header>
 
-  <h2>Projects</h2>
-  <ul>
-    <li><a class="name" href="https://writerforight.github.io/mlp-space-deformation/">Neural Nets Space Bending</a>
-      <span class="desc">Watch a small neural network bend, stretch and fold space layer by layer while it trains.
-      <a href="https://github.com/writerforight/mlp-space-deformation">Source</a></span></li>
-    <li><a class="name" href="https://writerforight.github.io/drone-wind-sim/">Quadrotor Lab</a>
-      <span class="desc">A browser quadrotor simulator for designing and tuning a cascaded PID controller and reading its step response live.
-      <a href="https://github.com/writerforight/drone-wind-sim">Source</a></span></li>
-    <li><a class="name" href="https://github.com/writerforight/ders-transkript">Ders Transkript</a>
-      <span class="desc">Offline lecture transcription with Whisper for Windows, macOS and Linux; no audio leaves the computer.
-      <a href="https://github.com/writerforight/ders-transkript/releases/latest">Download</a></span></li>
-  </ul>
+<main id="top">
+  <div class="hero">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="eyebrow">Electrical Engineering · RWTH Aachen</span>
+      <h1>Eren Can Almaz</h1>
+      <p class="tagline" data-i18n-html="tagline">I build <b>interactive tools that make engineering visible</b> — neural networks, flight control and signals, running in the browser or on your own computer.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects" data-i18n="ctaProjects">See the projects</a>
+        <a class="btn" href="https://github.com/writerforight">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
 
-  <h2>Smaller tools</h2>
-  <ul>
-    <li><a class="name" href="https://github.com/writerforight/youtube-segment-downloader">YouTube Segment Downloader</a>
-      <span class="desc">PySide6 desktop app to download a full YouTube video or only a selected time range.</span></li>
-    <li><a class="name" href="https://github.com/writerforight/Char-Based-RNN">Char-Based-RNN</a>
-      <span class="desc">Character-level RNN that learns online, step by step — pure NumPy with a Tkinter interface.</span></li>
-  </ul>
+  <section id="projects">
+    <div class="wrap">
+      <h2 class="kicker" data-i18n="projects">Projects</h2>
+      <div class="grid">
+        <article class="card wide">
+          <a class="shot" href="https://writerforight.github.io/mlp-space-deformation/">
+            <img src="assets/space-bending.webp" width="1200" height="470" alt="Neural Nets Space Bending: three tangled spirals separated after six layers">
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag" data-i18n="tagML">Machine learning</span><span class="tag" data-i18n="tagBrowser">Runs in the browser</span></div>
+            <h3>Neural Nets Space Bending</h3>
+            <p data-i18n="pSpace">Watch a small neural network bend, stretch and fold space layer by layer while it trains — in 2D and 3D, with every layer open to inspection.</p>
+            <div class="links"><a href="https://writerforight.github.io/mlp-space-deformation/" data-i18n="open">Open live ↗</a><a href="https://github.com/writerforight/mlp-space-deformation" data-i18n="source">Source</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <a class="shot" href="https://writerforight.github.io/drone-wind-sim/">
+            <img src="assets/quadrotor-lab.webp" width="960" height="600" loading="lazy" alt="Quadrotor Lab: hovering quadrotor with tracking-error and attitude plots after a step">
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag" data-i18n="tagControl">Control engineering</span><span class="tag" data-i18n="tagBrowser">Runs in the browser</span></div>
+            <h3>Quadrotor Lab</h3>
+            <p data-i18n="pQuad">Design and tune a cascaded PID controller for a quadrotor and read its step response live.</p>
+            <div class="links"><a href="https://writerforight.github.io/drone-wind-sim/" data-i18n="open">Open live ↗</a><a href="https://github.com/writerforight/drone-wind-sim" data-i18n="source">Source</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <a class="shot" href="https://github.com/writerforight/ders-transkript">
+            <img src="assets/ders-transkript.webp" width="960" height="600" loading="lazy" alt="Ders Transkript: a lecture recording with its waveform and transcript">
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag" data-i18n="tagSpeech">Speech recognition</span><span class="tag" data-i18n="tagDesktop">Windows · macOS · Linux</span></div>
+            <h3>Ders Transkript</h3>
+            <p data-i18n="pDers">Offline lecture transcription with Whisper. No audio leaves the computer.</p>
+            <div class="links"><a href="https://github.com/writerforight/ders-transkript/releases/latest" data-i18n="download">Download ↗</a><a href="https://github.com/writerforight/ders-transkript" data-i18n="source">Source</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-  <p class="hire">Open to HiWi / tutor roles in control, machine learning and signal processing.</p>
+  <section style="padding-top: 0">
+    <div class="wrap">
+      <h2 class="kicker" data-i18n="smaller">Smaller tools</h2>
+      <div class="small">
+        <a href="https://github.com/writerforight/youtube-segment-downloader"><b>YouTube Segment Downloader</b><span data-i18n="pYt">Desktop app to download a whole video or only a chosen time range.</span></a>
+        <a href="https://github.com/writerforight/Char-Based-RNN"><b>Char-Based-RNN</b><span data-i18n="pRnn">A character-level RNN that learns online, one step at a time, in NumPy.</span></a>
+      </div>
+    </div>
+  </section>
 
-  <p lang="tr">RWTH Aachen Üniversitesi'nde Elektrik Mühendisliği (Elektrotechnik) öğrencisiyim.
-    Mühendisliği görünür kılan etkileşimli araçlar geliştiriyorum: sinir ağları, uçuş kontrolü ve sinyaller.</p>
-
-  <footer><a href="https://github.com/writerforight">GitHub</a></footer>
+  <section id="contact" style="padding-top: 0">
+    <div class="wrap">
+      <div class="open">
+        <div>
+          <h2 data-i18n="openTitle">Open to HiWi and tutor roles</h2>
+          <p data-i18n="openText">Control engineering, machine learning and signal processing — especially where something has to be explained, not only built.</p>
+        </div>
+        <a class="btn primary" href="https://github.com/writerforight" data-i18n="openCta">Get in touch on GitHub ↗</a>
+      </div>
+    </div>
+  </section>
 </main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Eren Can Almaz</span>
+    <span><a href="https://github.com/writerforight">GitHub</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  // ---- language: English is the default; a choice is remembered; ?lang=de|tr links straight in
+  const T = {
+    de: {
+      navProjects: 'Projekte', navContact: 'Kontakt', eyebrow: 'Elektrotechnik · RWTH Aachen',
+      tagline: 'Ich entwickle <b>interaktive Werkzeuge, die Ingenieurwissen sichtbar machen</b> — neuronale Netze, Flugregelung und Signale, direkt im Browser oder auf dem eigenen Rechner.',
+      ctaProjects: 'Zu den Projekten', projects: 'Projekte', tagML: 'Maschinelles Lernen', tagBrowser: 'Läuft im Browser',
+      tagControl: 'Regelungstechnik', tagSpeech: 'Spracherkennung', tagDesktop: 'Windows · macOS · Linux',
+      pSpace: 'Zeigt, wie ein kleines neuronales Netz den Raum während des Trainings Schicht für Schicht biegt, streckt und faltet — in 2D und 3D, jede Schicht einzeln inspizierbar.',
+      pQuad: 'Eine kaskadierte PID-Regelung für einen Quadrocopter entwerfen, einstellen und die Sprungantwort live verfolgen.',
+      pDers: 'Offline-Transkription von Vorlesungen mit Whisper. Keine Audiodaten verlassen den Rechner.',
+      open: 'Live öffnen ↗', source: 'Quellcode', download: 'Download ↗', smaller: 'Kleinere Werkzeuge',
+      pYt: 'Desktop-App, die ein ganzes Video oder nur einen gewählten Zeitabschnitt herunterlädt.',
+      pRnn: 'Ein zeichenbasiertes RNN, das online Schritt für Schritt lernt, in NumPy.',
+      openTitle: 'Offen für HiWi- und Tutorenstellen',
+      openText: 'Regelungstechnik, maschinelles Lernen und Signalverarbeitung — besonders dort, wo etwas nicht nur gebaut, sondern auch erklärt werden muss.',
+      openCta: 'Kontakt über GitHub ↗',
+    },
+    tr: {
+      navProjects: 'Projeler', navContact: 'İletişim', eyebrow: 'Elektrik Mühendisliği · RWTH Aachen',
+      tagline: '<b>Mühendisliği görünür kılan etkileşimli araçlar</b> geliştiriyorum — sinir ağları, uçuş kontrolü ve sinyaller; tarayıcıda ya da doğrudan kendi bilgisayarınızda.',
+      ctaProjects: 'Projelere bak', projects: 'Projeler', tagML: 'Makine öğrenmesi', tagBrowser: 'Tarayıcıda çalışır',
+      tagControl: 'Kontrol mühendisliği', tagSpeech: 'Konuşma tanıma', tagDesktop: 'Windows · macOS · Linux',
+      pSpace: 'Küçük bir sinir ağının eğitilirken uzayı katman katman nasıl büktüğünü, gerdiğini ve katladığını izleyin — 2B ve 3B, her katman tek tek incelenebilir.',
+      pQuad: 'Bir quadrotor için kaskad PID kontrolcüsü tasarlayın, ayarlayın ve basamak yanıtını canlı okuyun.',
+      pDers: 'Whisper ile internetsiz ders transkripsiyonu. Ses bilgisayardan çıkmaz.',
+      open: 'Canlı aç ↗', source: 'Kaynak kod', download: 'İndir ↗', smaller: 'Küçük araçlar',
+      pYt: 'Bir videonun tamamını ya da yalnızca seçilen zaman aralığını indiren masaüstü uygulaması.',
+      pRnn: 'NumPy ile yazılmış, adım adım çevrimiçi öğrenen karakter düzeyinde bir RNN.',
+      openTitle: 'HiWi ve tutor pozisyonlarına açığım',
+      openText: 'Kontrol, makine öğrenmesi ve sinyal işleme — özellikle bir şeyin yalnızca yapılması değil, anlatılması da gereken yerlerde.',
+      openCta: 'GitHub üzerinden ulaşın ↗',
+    },
+  };
+  const nodes = [...document.querySelectorAll('[data-i18n], [data-i18n-html]')];
+  const EN = {};
+  for (const n of nodes) {
+    const k = n.dataset.i18n || n.dataset.i18nHtml;
+    EN[k] = n.dataset.i18nHtml ? n.innerHTML : n.textContent;
+  }
+  T.en = EN;
+  function setLang(l, remember) {
+    if (!T[l]) l = 'en';
+    for (const n of nodes) {
+      const k = n.dataset.i18n || n.dataset.i18nHtml, v = T[l][k] ?? EN[k];
+      if (n.dataset.i18nHtml) n.innerHTML = v; else n.textContent = v;
+    }
+    document.documentElement.lang = l;
+    for (const b of document.querySelectorAll('.lang button')) b.setAttribute('aria-pressed', String(b.dataset.lang === l));
+    if (remember) try { localStorage.setItem('lang', l); } catch (e) {}
+  }
+  document.querySelector('.lang').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-lang]');
+    if (b) setLang(b.dataset.lang, true);
+  });
+  let start = 'en';
+  try { start = localStorage.getItem('lang') || 'en'; } catch (e) {}
+  const q = new URLSearchParams(location.search).get('lang');
+  if (q && T[q]) start = q;
+  if (start !== 'en') setLang(start, false);
+
+  // ---- top bar turns solid after the hero
+  const bar = document.getElementById('bar');
+  const onScroll = () => bar.classList.toggle('solid', window.scrollY > 24);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // ---- hero: a grid bent by a slowly moving smooth field
+  const cv = document.getElementById('field'), cx = cv.getContext('2d');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W = 0, H = 0, dpr = 1;
+  function size() {
+    dpr = Math.min(2, devicePixelRatio || 1);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  // two Gaussian wells that drift; each pulls the grid toward its centre and swirls it a little
+  function warp(x, y, t) {
+    let dx = 0, dy = 0;
+    const wells = [
+      [0.68 + 0.10 * Math.sin(0.13 * t), 0.42 + 0.12 * Math.cos(0.11 * t), 0.20, 1.0],
+      [0.88 + 0.06 * Math.cos(0.09 * t + 1), 0.70 + 0.10 * Math.sin(0.07 * t + 2), 0.15, -0.8],
+    ];
+    const s = Math.min(W, H) || 1;
+    for (const [ux, uy, r, k] of wells) {
+      const ex = x - ux * W, ey = y - uy * H, R = r * Math.max(W, H);
+      const g = Math.exp(-(ex * ex + ey * ey) / (2 * R * R));
+      dx += -0.35 * ex * g + k * 0.25 * ey * g;
+      dy += -0.35 * ey * g - k * 0.25 * ex * g;
+    }
+    return [x + dx, y + dy];
+  }
+  function draw(ms) {
+    const t = ms / 1000;
+    cx.clearRect(0, 0, W, H);
+    const step = W < 700 ? 34 : 44, seg = 12;
+    cx.lineWidth = 1;
+    for (let pass = 0; pass < 2; pass++) {
+      const n = pass ? Math.ceil(H / step) + 1 : Math.ceil(W / step) + 1;
+      for (let i = 0; i <= n; i++) {
+        cx.beginPath();
+        const len = pass ? W : H, m = Math.ceil(len / seg);
+        for (let j = 0; j <= m; j++) {
+          const x = pass ? j * seg : i * step, y = pass ? i * step : j * seg;
+          const [u, v] = warp(x, y, t);
+          j ? cx.lineTo(u, v) : cx.moveTo(u, v);
+        }
+        cx.strokeStyle = 'rgba(124, 183, 255, 0.13)';
+        cx.stroke();
+      }
+    }
+    if (!still && running) requestAnimationFrame(draw);
+  }
+  let running = true;
+  new IntersectionObserver(([e]) => {
+    const was = running; running = e.isIntersecting;
+    if (running && !was && !still) requestAnimationFrame(draw);
+  }).observe(cv);
+  addEventListener('resize', () => { size(); if (still) draw(0); });
+  size();
+  requestAnimationFrame(draw);
+})();
+</script>
 </body>
 </html>
